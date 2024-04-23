@@ -18,7 +18,7 @@ git_repository(
 
 git_repository(
     name = "com_google_absl",
-    commit = "66665d8d2e3fedff340b83f9841ca427145a7b26",
+    commit = "fb3621f4f897824c0dbe0615fa94543df6192f30",
     remote = "https://github.com/abseil/abseil-cpp.git",
 )
 
@@ -56,12 +56,16 @@ git_repository(
         # E.g. issue: https://github.com/bazelbuild/bazel/issues/3744
         # TODO: b/263201501 - Make DTensor C++ API public and remove this patch.
         "//third_party/tensorflow:dtensor_internal_visibility.patch",
+        # The latest GRPC release fails to build with Cython 3.0.
+        # Wait for TensorFlow to update GRPC library after
+        # https://github.com/grpc/grpc/issues/33918 has been released.
+        "//third_party/tensorflow:grpc_cython.patch",
         "//third_party/tensorflow:internal_visibility.patch",
         "//third_party/tensorflow:python_toolchain.patch",
         "//third_party/tensorflow:tf2xla_visibility.patch",
     ],
     remote = "https://github.com/tensorflow/tensorflow.git",
-    tag = "v2.14.0",
+    tag = "v2.16.1",
 )
 
 git_repository(
